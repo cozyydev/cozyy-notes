@@ -25,7 +25,7 @@ type Note struct {
 type NotesService struct {
 	dir   string
 	notes []Note
-	files map[string]string // note ID -> filename
+	files map[string]string
 }
 
 func NewNotesService() *NotesService {
@@ -84,7 +84,7 @@ func (n *NotesService) Reload() error {
 	return n.loadFolder(n.dir)
 }
 
-// Create creates a new note and writes it to disk
+// Create a new note and writes it to disk
 func (n *NotesService) Create(title, content string) (Note, error) {
 	if n.dir == "" {
 		return Note{}, errors.New("no notes folder selected")
@@ -116,7 +116,7 @@ func (n *NotesService) Update(id, title, content string) error {
 	return errors.New("note not found")
 }
 
-// Delete deletes a note and removes its file
+// Delete a note and removes its file
 func (n *NotesService) Delete(id string) error {
 	for i := range n.notes {
 		if n.notes[i].ID == id {

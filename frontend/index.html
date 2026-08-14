@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cozyy Notes</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+          <h1>Notes</h1>
+          <button id="new-note-btn" class="btn-primary">+ New Note</button>
+        </div>
+        <div id="notes-list" class="notes-list"></div>
+        <div class="sidebar-footer">
+          <button id="folder-btn" class="btn-secondary" title="Choose notes folder">
+            Folder
+          </button>
+          <button id="reload-btn" class="btn-secondary" title="Reload notes from disk">
+            Load
+          </button>
+        </div>
+        <div id="folder-path" class="folder-path"></div>
+      </div>
+
+      <!-- Editor -->
+      <div class="editor">
+        <div class="editor-topbar">
+          <button id="sidebar-toggle" class="btn-icon" title="Toggle sidebar">
+            &#9776;
+          </button>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <h2>No note selected</h2>
+          <p>Select a note from the list or create a new one</p>
+        </div>
+        <div id="note-editor" class="note-editor" style="display: none">
+          <input
+            type="text"
+            id="note-title"
+            placeholder="Note title"
+            class="title-input"
+          />
+          <div id="note-content" class="content-editor"></div>
+          <div class="editor-footer">
+            <button id="delete-btn" class="btn-danger">Delete</button>
+            <button id="save-btn" class="btn-secondary save-btn" title="Save now">
+              Save
+            </button>
+            <span id="save-status" class="save-status"></span>
+            <span id="last-updated" class="last-updated"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/wails/runtime.js"></script>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

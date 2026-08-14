@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=cozyy-notes
+Exec=cozyy-notes
+Icon=cozyy-notes
+Categories=Development;
+Terminal=false
+Keywords=wails
+Version=1.0
+StartupNotify=false

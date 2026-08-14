@@ -1,0 +1,362 @@
+:root {
+  --dracula-bg: #282a36;
+  --dracula-current-line: #44475a;
+  --dracula-fg: #f8f8f2;
+  --dracula-comment: #6272a4;
+  --dracula-purple: #bd93f9;
+  --dracula-pink: #ff79c6;
+  --dracula-red: #ff5555;
+  --dracula-green: #50fa7b;
+  --dracula-cyan: #8be9fd;
+  --dracula-darker: #21222c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--dracula-bg);
+  color: var(--dracula-fg);
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  background: var(--dracula-darker);
+  border-right: 1px solid var(--dracula-current-line);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.2s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed {
+  width: 0;
+  border-right: none;
+}
+
+.sidebar > * {
+  min-width: 300px;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--dracula-current-line);
+}
+
+.sidebar-header h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: var(--dracula-purple);
+}
+
+.notes-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.note-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--dracula-current-line);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.note-item:hover {
+  background: var(--dracula-current-line);
+}
+
+.note-item.active {
+  background: var(--dracula-purple);
+  color: var(--dracula-darker);
+}
+
+.note-item h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.note-item p {
+  font-size: 14px;
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--dracula-current-line);
+  display: flex;
+  gap: 8px;
+}
+
+.folder-path {
+  padding: 8px 20px 12px;
+  font-size: 12px;
+  color: var(--dracula-comment);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Editor top bar + formatting toolbar */
+.editor-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--dracula-current-line);
+}
+
+.format-toolbar {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-icon {
+  background: transparent;
+  color: var(--dracula-fg);
+  border: 1px solid transparent;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.btn-icon:hover {
+  background: var(--dracula-current-line);
+  border-color: var(--dracula-comment);
+}
+
+/* Editor */
+.editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--dracula-bg);
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--dracula-comment);
+}
+
+.note-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.title-input {
+  font-size: 32px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  margin-bottom: 16px;
+  padding: 8px 0;
+  background: transparent;
+  color: var(--dracula-fg);
+}
+
+.title-input::placeholder {
+  color: var(--dracula-comment);
+}
+
+.content-editor {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Toast UI Editor — Dracula overrides (dark theme loads after this file, hence !important) */
+.toastui-editor-dark.toastui-editor-defaultUI {
+  border-color: var(--dracula-current-line) !important;
+}
+
+.toastui-editor-dark .toastui-editor-md-container,
+.toastui-editor-dark .toastui-editor-ww-container,
+.toastui-editor-dark .toastui-editor-main,
+.toastui-editor-dark .toastui-editor-mode-switch,
+.toastui-editor-dark .toastui-editor-mode-switch .tab-item.active,
+.toastui-editor-dark .toastui-editor-popup,
+.toastui-editor-dark .toastui-editor-context-menu {
+  background-color: var(--dracula-bg) !important;
+}
+
+.toastui-editor-dark .toastui-editor-defaultUI-toolbar,
+.toastui-editor-dark .toastui-editor-mode-switch .tab-item {
+  background-color: var(--dracula-darker) !important;
+  border-color: var(--dracula-current-line) !important;
+}
+
+.toastui-editor-dark .toastui-editor-mode-switch {
+  border-top-color: var(--dracula-current-line) !important;
+}
+
+.toastui-editor-dark .toastui-editor-mode-switch .tab-item.active {
+  border-top-color: var(--dracula-bg) !important;
+  color: var(--dracula-fg) !important;
+}
+
+.toastui-editor-dark .toastui-editor-toolbar-icons {
+  border-color: transparent !important;
+}
+
+.toastui-editor-dark .toastui-editor-toolbar-icons:not(:disabled):hover,
+.toastui-editor-dark .toastui-editor-popup-add-heading ul li:hover {
+  background-color: var(--dracula-current-line) !important;
+  border-color: var(--dracula-current-line) !important;
+}
+
+.toastui-editor-dark .toastui-editor-toolbar-divider {
+  background-color: var(--dracula-current-line) !important;
+}
+
+.toastui-editor-dark .toastui-editor-contents,
+.toastui-editor-dark .toastui-editor-contents p,
+.toastui-editor-dark .toastui-editor-contents h1,
+.toastui-editor-dark .toastui-editor-contents h2,
+.toastui-editor-dark .toastui-editor-contents h3,
+.toastui-editor-dark .toastui-editor-contents h4,
+.toastui-editor-dark .toastui-editor-contents li {
+  color: var(--dracula-fg) !important;
+}
+
+.toastui-editor-dark .toastui-editor-contents h1,
+.toastui-editor-dark .toastui-editor-contents h2 {
+  border-color: var(--dracula-current-line) !important;
+}
+
+.toastui-editor-dark .toastui-editor-contents code {
+  color: var(--dracula-green) !important;
+  background-color: var(--dracula-current-line) !important;
+}
+
+.toastui-editor-dark .toastui-editor-contents pre {
+  background-color: var(--dracula-darker) !important;
+}
+
+.toastui-editor-dark .toastui-editor-contents pre code {
+  color: var(--dracula-fg) !important;
+  background-color: transparent !important;
+}
+
+.toastui-editor-dark .toastui-editor-contents blockquote {
+  border-left-color: var(--dracula-purple) !important;
+  color: var(--dracula-comment) !important;
+}
+
+.toastui-editor-dark .toastui-editor-contents blockquote p {
+  color: var(--dracula-comment) !important;
+}
+
+.save-status {
+  font-size: 14px;
+  color: var(--dracula-green);
+}
+
+.save-btn {
+  flex: 0 0 auto;
+  margin-left: 8px;
+}
+
+.editor-footer .last-updated {
+  margin-left: auto;
+}
+
+.editor-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--dracula-current-line);
+}
+
+.last-updated {
+  font-size: 14px;
+  color: var(--dracula-comment);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--dracula-purple);
+  color: var(--dracula-darker);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: var(--dracula-pink);
+}
+
+.btn-secondary {
+  background: var(--dracula-current-line);
+  color: var(--dracula-fg);
+  border: 1px solid var(--dracula-comment);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  flex: 1;
+}
+
+.btn-secondary:hover {
+  background: var(--dracula-comment);
+}
+
+.btn-danger {
+  background: var(--dracula-red);
+  color: var(--dracula-darker);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-danger:hover {
+  background: var(--dracula-pink);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dracula-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dracula-current-line);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dracula-comment);
+}

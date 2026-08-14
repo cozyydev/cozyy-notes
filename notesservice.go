@@ -83,11 +83,7 @@ func (n *NotesService) Reload() error {
 	return n.loadFolder(n.dir)
 }
 
-<<<<<<< HEAD
 // Create a new note and writes it to disk
-=======
-// Create creates a new note and writes it to disk
->>>>>>> 58c13b8d02e796f3d56201f273ee6c102da07192
 func (n *NotesService) Create(title, content string) (Note, error) {
 	if n.dir == "" {
 		return Note{}, errors.New("no notes folder selected")
@@ -119,11 +115,7 @@ func (n *NotesService) Update(id, title, content string) error {
 	return errors.New("note not found")
 }
 
-<<<<<<< HEAD
 // Delete a note and removes its file
-=======
-// Delete deletes a note and removes its file
->>>>>>> 58c13b8d02e796f3d56201f273ee6c102da07192
 func (n *NotesService) Delete(id string) error {
 	for i := range n.notes {
 		if n.notes[i].ID == id {

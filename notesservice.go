@@ -25,6 +25,7 @@ type Note struct {
 type NotesService struct {
 	dir   string
 	notes []Note
+	files map[string]string
 }
 
 func NewNotesService() *NotesService {
